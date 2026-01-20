@@ -1,105 +1,185 @@
 # 🧠 QueryCortex
 
-**QueryCortex** is a production-grade, agentic AI platform designed for intelligent reasoning over **structured databases** and **unstructured document corpora**. It combines **LLM-driven planning**, **Retrieval-Augmented Generation (RAG)**, and **secure backend engineering** to dynamically route queries across SQL databases and vector stores, delivering accurate and context-aware responses.
+### An Agentic AI Platform for Deep Reasoning over Data & Documents
 
-> 🚀 Built for real-world systems where data lives across databases, documents, and roles.
+<p align="center">
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Agentic_AI-Deep_Reasoning-6A5ACD?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/RAG-Semantic_Vector_Search-FF6F00?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
+</p>
 
 ---
 
+## 🚀 Overview
+
+**QueryCortex** is a **production-grade agentic AI orchestration platform** designed to perform **deep reasoning, intent understanding, and autonomous decision-making** across:
+
+- 📊 **Structured data** (SQL databases)
+- 📄 **Unstructured knowledge** (PDFs, documents)
+- 🔐 **Role-aware enterprise environments**
+
+Unlike traditional chatbots, QueryCortex **thinks before it answers**.  
+It plans execution paths, validates reasoning, selects tools dynamically, and ensures responses are **complete, explainable, and safe**.
+
+> 💡 Built for real-world systems where AI must operate across data silos, security boundaries, and business logic.
+
+---
+
+## 📑 Table of Contents
+
+- [System Architecture](#system-architecture)
+- [Core Capabilities](#core-capabilities)
+- [Agentic Intelligence Layer](#agentic-intelligence-layer)
+- [Database Intelligence](#database-intelligence)
+- [Observability & Auditability](#observability--auditability)
+- [Timezone Handling](#timezone-handling)
+- [Technology Stack](#technology-stack)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Running the Application](#running-the-application)
+- [Database Schema Overview](#database-schema-overview)
+- [Document Processing Pipeline](#document-processing-pipeline)
+- [Security & Compliance](#security--compliance)
+- [Video Walkthroughs](#video-walkthroughs)
+- [License](#license)
+- [Contact](#contact)
+
+---
+
+<a id="system-architecture"></a>
 ## 🗺️ System Architecture
 
 <p align="center">
-  <img src="documentation/llm_agent arc.png" alt="QueryCortex Architecture" width="90%" />
+  <img src="./documentation/llm_agent arc.png" alt="QueryCortex Architecture" width="90%" />
 </p>
 
-The architecture illustrates how **QueryCortex plans, routes, and executes queries** using an agentic decision layer that chooses between:
+QueryCortex uses a **multi-agent reasoning architecture** where each user query flows through an **intelligent decision layer**.
 
-* 📄 *Document-first retrieval* (Vector Search)
-* 🗄️ *Database-first execution* (SQL)
-* 🔁 *Multi-step hybrid reasoning*
+Depending on intent and context, the system dynamically selects:
+
+- 📄 **Semantic document reasoning** (Vector-based RAG)
+- 🗄️ **Schema-aware SQL execution**
+- 🔁 **Hybrid multi-hop reasoning pipelines**
+
+This ensures **transparent, auditable AI workflows**, not black-box responses.
 
 ---
 
-## ✨ Key Features
+<a id="core-capabilities"></a>
+## ✨ Core Capabilities
 
-### 🔐 Secure Authentication & Sessions
-
-* OAuth2-based login with **JWT tokens** (30-minute expiration)
-* Secure logout with session invalidation
-* Persistent session tracking with expiration handling
+### 🔐 Secure Authentication & Stateful Sessions
+- OAuth2-compliant authentication
+- JWT-based access tokens (30-minute expiry)
+- Secure logout with server-side invalidation
+- Full session lifecycle tracking
 
 ### 👥 Role-Based Access Control (RBAC)
+- Fine-grained authorization at **query & document level**
+- Role-scoped default knowledge bases via `ROLE_PDFS`
+- Strict isolation between roles and datasets
 
-* Fine-grained access to documents and queries based on user roles
-* Role-specific default documents via `ROLE_PDFS`
-* Strong isolation between user data
-
-### 📄 Intelligent Document Management
-
-* Upload and process **PDF documents** per role
-* Automatic ingestion into **vector stores**
-* Startup processing of default role documents
-
-### 🧠 Agentic Query Processing
-
-* **Query Agent** plans execution using intent + strategy detection
-* Dynamically selects:
-
-  * 🗄️ Database Query (SQL)
-  * 📄 Document Query (Vector Search)
-  * 🔄 Hybrid multi-step execution
-* Completion checks ensure accurate and complete answers
-
-### 📊 Database Integration
-
-* PostgreSQL backend with **SQLAlchemy ORM**
-* Automatic schema introspection
-* Safe query execution with natural language responses
-
-### 🧾 Logging & Observability
-
-* Detailed query history with execution time
-* Login metadata logging (IP, OS, browser, device)
-* Safe logging (no secrets exposed)
-
-### 🌍 Timezone-Aware System
-
-* All timestamps stored in **Asia/Kolkata** timezone
-* Migration support for offset-naive records
+### 📄 Intelligent Document Intelligence (NLP + RAG)
+- Role-aware PDF ingestion
+- Semantic chunking and embeddings
+- High-recall vector search with grounding
+- Auto-loading of default documents at startup
 
 ---
 
-## 🏗️ Technology Stack (Tooling)
+<a id="agentic-intelligence-layer"></a>
+## 🧠 Agentic Intelligence Layer
 
-| Layer             | Tools                        |
-| ----------------- | ---------------------------- |
-| Backend API       | FastAPI 🧩                   |
-| Authentication    | OAuth2 · JWT 🔐              |
-| Database          | PostgreSQL · SQLAlchemy 🗄️  |
-| Document Search   | Vector Stores · RAG 📄       |
-| LLM Orchestration | Agent-based Planning 🤖      |
-| Frontend          | Vue 3 · Vite · TypeScript 🎨 |
-| Security          | CORS · RBAC · Bcrypt 🛡️     |
+QueryCortex is **not a simple chatbot** — it is an **agent-driven reasoning system**.
+
+### 🧩 Core Agents
+
+- **Intent Detection Agent**
+  - Deep NLP-based intent classification
+  - Distinguishes analytical, informational, and operational queries
+
+- **Auto-Thinking Planning Agent**
+  - Decomposes complex queries into steps
+  - Plans optimal execution order
+
+- **Routing & Strategy Agent**
+  - Selects SQL, RAG, or Hybrid execution
+  - Prevents unsafe or invalid query paths
+
+- **Query Completion Checker**
+  - Ensures answers are complete and grounded
+  - Prevents hallucinations and partial responses
+
+- **Reasoning Validator**
+  - Verifies alignment between intent, execution, and output
 
 ---
 
+<a id="database-intelligence"></a>
+## 📊 Database Intelligence
+
+- PostgreSQL-backed persistence layer
+- SQLAlchemy ORM with schema introspection
+- Safe, explainable SQL execution
+- Natural-language-to-SQL reasoning with result interpretation
+
+---
+
+<a id="observability--auditability"></a>
+## 🧾 Observability & Auditability
+
+- Full query execution history
+- Latency and execution-time metrics
+- Login metadata capture (IP, OS, browser, device)
+- Secure logging with **zero secret exposure**
+
+---
+
+<a id="timezone-handling"></a>
+## 🌍 Timezone Handling
+
+- All timestamps standardized to **Asia/Kolkata**
+- Automatic handling of legacy offset-naive records
+
+---
+
+<a id="technology-stack"></a>
+## 🏗️ Technology Stack
+
+| Layer          | Technologies                            |
+|----------------|------------------------------------------|
+| Backend API    | FastAPI                                  |
+| Authentication | OAuth2 · JWT                             |
+| Database       | PostgreSQL · SQLAlchemy                  |
+| NLP & RAG      | Vector Stores · Semantic Search          |
+| Agentic AI     | Planning Agents · Reasoning Agents       |
+| Frontend       | Vue 3 · Vite · TypeScript                |
+| Security       | RBAC · CORS · Bcrypt                     |
+
+---
+
+<a id="prerequisites"></a>
 ## 📦 Prerequisites
 
-* **Python** ≥ 3.8
-* **PostgreSQL** ≥ 12
-* **Node.js** (Vite-compatible)
-* **npm / pnpm**
+- **Python** ≥ 3.8  
+- **PostgreSQL** ≥ 12  
+- **Node.js** (Vite compatible)  
+- **npm / pnpm**
 
 ---
 
+<a id="installation"></a>
 ## ⚙️ Installation
 
-### 1️⃣ Clone the Repository
-
+### 1️⃣ Clone Repository
 ```bash
 git clone https://github.com/shib1111111/QueryCortex
 cd QueryCortex
-```
+````
 
 ### 2️⃣ Create Virtual Environment
 
@@ -114,7 +194,7 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Setup Frontend
+### 4️⃣ Frontend Setup
 
 ```bash
 cd frontend
@@ -123,9 +203,11 @@ npm install
 
 ---
 
+<a id="configuration"></a>
+
 ## 🔧 Configuration
 
-### Backend `.env` (server root)
+### Backend `.env`
 
 ```env
 DB_URI=postgresql://username:password@localhost:5432/querycortex
@@ -133,84 +215,99 @@ JWT_SECRET_KEY=your-secret-key
 ANTHROPIC_API_KEY=your-anthropic-api-key
 ```
 
-### Frontend `.env` (frontend root)
+### Frontend `.env`
 
 ```env
 VITE_BASE_URL=http://localhost:8080
 ```
 
-📌 **Notes**:
+**Best Practices**
 
 * Generate JWT secret using: `os.urandom(32).hex()`
-* Default documents are auto-loaded via `ROLE_PDFS`
+* Default role documents auto-load via `ROLE_PDFS`
 
 ---
 
+<a id="running-the-application"></a>
+
 ## ▶️ Running the Application
 
-### Start Backend
+### Backend
 
 ```bash
 uvicorn app:app --host 0.0.0.0 --port 8080
 ```
 
-➡️ API: [http://localhost:8080](http://localhost:8080)
+➡ API: [http://localhost:8080](http://localhost:8080)
 
-### Start Frontend
+### Frontend
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-➡️ UI: [http://localhost:5173](http://localhost:5173)
+➡ UI: [http://localhost:5173](http://localhost:5173)
 
 ---
+
+<a id="database-schema-overview"></a>
 
 ## 🗄️ Database Schema Overview
 
-* **User** – account & role details
-* **UserSession** – token lifecycle & expiry
-* **UserLog** – login environment metadata
-* **Documents** – uploaded & default PDFs
-* **ChatHistory** – queries, responses & timing
+* **User** – identity and role metadata
+* **UserSession** – token lifecycle management
+* **UserLog** – authentication environment data
+* **Documents** – role-based PDFs
+* **ChatHistory** – reasoning trace & timing
 
 ---
 
-## 📄 Document Processing Flow
+<a id="document-processing-pipeline"></a>
 
-1. PDFs uploaded per role
-2. Stored at `ROOT_DIR/dataset/pdfs/<role>`
-3. Converted into vector embeddings
-4. Queried via semantic search during agent execution
+## 📄 Document Processing Pipeline
+
+1. Role-based PDF upload
+2. Secure storage at `ROOT_DIR/dataset/pdfs/<role>`
+3. Embedding generation
+4. Semantic retrieval during agent execution
 
 ---
 
-## 🔐 Security Highlights
+<a id="security--compliance"></a>
 
-* JWT-protected endpoints
-* Password hashing with bcrypt
-* Strict CORS policies
-* Automatic session cleanup
+## 🔐 Security & Compliance
+
+* JWT-secured endpoints
+* Bcrypt password hashing
+* Strict CORS enforcement
+* Automatic session expiration
 * No sensitive data in logs
 
 ---
 
+<a id="video-walkthroughs"></a>
+
 ## 🎥 Video Walkthroughs
 
-* **AI Agent Architecture**
+* **Agentic AI Architecture**
   [https://youtu.be/mWcpJCHRmog](https://youtu.be/mWcpJCHRmog)
 
-* **End-to-End Demo**
+* **End-to-End System Demo**
   [https://youtu.be/E_-fb--rXds](https://youtu.be/E_-fb--rXds)
 
 ---
 
+<a id="license"></a>
+
 ## 📜 License
 
-Licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
+Released under the **MIT License**.
+See [LICENSE](LICENSE) for details.
 
 ---
+
+<a id="contact"></a>
 
 ## 📬 Contact
 
@@ -220,4 +317,4 @@ Licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
 
 ---
 
-> ⭐ If you find QueryCortex useful, consider starring the repo!
+⭐ *If QueryCortex aligns with your vision for intelligent systems, consider starring the repository.*
